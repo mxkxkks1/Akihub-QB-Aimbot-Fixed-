@@ -13,4 +13,8 @@ Original: ```fbRemote:FireServer('Clicked', originPosAdjusted, originPosAdjusted
 Fixed : ```fbRemote:FireServer('Clicked', originPosAdjusted, originPosAdjusted+throwDir*10000, pow, pow)``` (Undetected)
 
 
-# Interface Issues (UI)
+# Minor Interface Issues (UI)
+
+- Replaced ```game.Players``` with ```FindFirstChildOfClass``` or you could use ```GetService``` which would also work.
+
+
