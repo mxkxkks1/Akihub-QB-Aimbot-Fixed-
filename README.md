@@ -16,6 +16,6 @@ Fixed : ```fbRemote:FireServer('Clicked', originPosAdjusted, originPosAdjusted+t
 # Minor Interface Issues (UI)
 
 - Replaced ```game.Players``` with ```FindFirstChildOfClass``` or you could use ```GetService``` which would also work.
-- Ball traces won't work with solara as far as my concern, have not tried with wave but should most likley work.
+- Ball traces won't work with solara as far as my concern. have not tried with wave but should most likley work.
 
 
