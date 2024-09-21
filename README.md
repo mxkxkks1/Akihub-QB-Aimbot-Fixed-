@@ -13,4 +13,4 @@ Original: ```fbRemote:FireServer('Clicked', originPosAdjusted, originPosAdjusted
 Fixed : ```fbRemote:FireServer('Clicked', originPosAdjusted, originPosAdjusted+throwDir*10000, pow, pow)``` (Undetected)
 
 
-# GUI Issues
+# Interface Issues (UI)
