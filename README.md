@@ -10,7 +10,7 @@ Quote: "***I know this game extremely well. The game "Football Fusion 2" on ROBL
 
 Original: ```fbRemote:FireServer('Clicked', originPosAdjusted, originPosAdjusted+throwDir*10000, pow, pow)``` (Detected)
 
-Fixed : ```fbRemote:FireServer('Clicked', originPosAdjusted, originPosAdjusted+throwDir*10000, pow, pow)``` (Undetected)
+Fixed : ```fbRemote:FireServer('Clicked', originPosAdjusted, originPosAdjusted+throwDir*10000, 95, pow)``` (Undetected)
 
 
 # Minor Interface Issues (UI)
