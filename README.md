@@ -1,4 +1,4 @@
-# Akihub-QB-Aimbot-Fixed
+# Akihub-QB-Aimbot-Fixed (SOLARA SUPPORTED)
 
 # Original Leaked Code : https://robloxscripts.com/football-fusion-2-leaked-qb-aimbot-script-from-akihub/
 
