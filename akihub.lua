@@ -660,7 +660,7 @@ end
 
 								
 local TargetPos
-getgenv().Time = 2
+getgenv().Time = 2 -- Ball airtime. Set to 1 for dots, keep at 2 for mag or dives
 local ready = false
 
 local htest = create('Hint',ws,{Text=''})
