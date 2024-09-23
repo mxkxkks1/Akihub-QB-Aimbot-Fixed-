@@ -18,4 +18,9 @@ Fixed : ```fbRemote:FireServer('Clicked', originPosAdjusted, originPosAdjusted+t
 - Replaced ```game.Players``` with ```FindFirstChildOfClass``` or you could use ```GetService``` which would also work.
 - Ball traces won't work with solara as far as my concern. have not tried with wave but should most likley work.
 
+# Upadates
+
+I Added a keybind (J) to change from bullet to mag since most of the functions return nil due and the UI not being able to solara being a shit executor. Wave recommended for better experience.
+
+You can change the keybind here: ```getgenv().QBAimbotSettings.TimeToggleKeybind = 'J'```
 
