@@ -99,6 +99,8 @@ getgenv().ModeConfigs = {
     }
 }
 
+getgenv().QBAimbotSettings.TimeToggleKeybind = 'J'
+
 local practiceMode = game.PlaceId == 8206123457
 local botMode = false
 
@@ -616,6 +618,20 @@ local function updateThrowInfo(targetPos,_Time,isRedo,originalTime)
 end
 
 local invalidPower_retryDir = 1
+
+local function toggleTime()
+    if getgenv().Time == 1 then
+        getgenv().Time = 2
+    else
+        getgenv().Time = 1
+    end
+    updateAirTimeText()
+    print("Time toggled to: " .. getgenv().Time)
+end
+
+local invalidPower_retryDir = 1
+
+
 local throw
 throw = function(targetPos,_Time)
 	if impossibleThrow then return end
@@ -660,7 +676,7 @@ end
 
 								
 local TargetPos
-getgenv().Time = 2 -- Ball airtime. Set to 1 for dots, keep at 2 for mag or dives
+getgenv().Time = 1 -- Ball airtime. Set to 1 for dots, keep at 2 for mag or dives
 local ready = false
 
 local htest = create('Hint',ws,{Text=''})
@@ -738,52 +754,53 @@ local stopVisuals = true
 
 
 uis.InputBegan:Connect(function(io,gpe)
-	local isReady = practiceMode and char:FindFirstChild('Football') or ready
-	if isReady and QBAimbotSettings.Enabled and not gpe then
-		if io.UserInputType == Enum.UserInputType.Keyboard then
-			local k = io.KeyCode
-			if k == keys.R then
-				if angleBased then
-					desiredAngle = math.clamp(desiredAngle+5,5,90)
-				elseif QBAimbotSettings.PowerBased then
-					QBAimbotSettings.DesiredPower = math.clamp(QBAimbotSettings.DesiredPower+5,5,95)
-				else
-					Time = math.clamp(Time + .25, .25, QBAimbotSettings.maxAirTime)
-					updateAirTimeText()
-				end
-			end
-			if k == keys.F then
-				if angleBased then
-					desiredAngle = math.clamp(desiredAngle-5,5,90)
-				elseif QBAimbotSettings.PowerBased then
-					QBAimbotSettings.DesiredPower = math.clamp(QBAimbotSettings.DesiredPower-5,5,95)
-				else
-					Time = math.clamp(Time - .25, .25, QBAimbotSettings.maxAirTime)
-					updateAirTimeText()
-				end
-			end
-		elseif io.UserInputType == Enum.UserInputType.MouseButton1 and TargetPos then
-			if not impossibleThrow then
+    local isReady = practiceMode and char:FindFirstChild('Football') or ready
+    if isReady and QBAimbotSettings.Enabled and not gpe then
+        if io.UserInputType == Enum.UserInputType.Keyboard then
+            local k = io.KeyCode
+            if k == keys.R then
+                if angleBased then
+                    desiredAngle = math.clamp(desiredAngle+5,5,90)
+                elseif QBAimbotSettings.PowerBased then
+                    QBAimbotSettings.DesiredPower = math.clamp(QBAimbotSettings.DesiredPower+5,5,95)
+                else
+                    Time = math.clamp(Time + .25, .25, QBAimbotSettings.maxAirTime)
+                    updateAirTimeText()
+                end
+            elseif k == keys.F then
+                if angleBased then
+                    desiredAngle = math.clamp(desiredAngle-5,5,90)
+                elseif QBAimbotSettings.PowerBased then
+                    QBAimbotSettings.DesiredPower = math.clamp(QBAimbotSettings.DesiredPower-5,5,95)
+                else
+                    Time = math.clamp(Time - .25, .25, QBAimbotSettings.maxAirTime)
+                    updateAirTimeText()
+                end
+            elseif k == keys[QBAimbotSettings.TimeToggleKeybind] then
+                toggleTime()
+            end
+        elseif io.UserInputType == Enum.UserInputType.MouseButton1 and TargetPos then
+            if not impossibleThrow then
                 if QBAimbotSettings.Enabled == true then
                     spawn(playThrowAnim)
                     wait(throwDelay)
                     stopVisuals = true
                 end
-				pcall(function()
-					if QBAimbotSettings.Enabled == true then
+                pcall(function()
+                    if QBAimbotSettings.Enabled == true then
                         throw(TargetPos,Time)
                     else
                         return
                     end
-				end)
-				delay(Time,function()
-					stopVisuals = false
-				end)
-			end
-		elseif io.UserInputType == keys[QBAimbotSettings.ToggleKeybind] then
-			QBAimbotSettings.Enabled = not QBAimbotSettings.Enabled
-		end
-	end
+                end)
+                delay(Time,function()
+                    stopVisuals = false
+                end)
+            end
+        elseif io.UserInputType == keys[QBAimbotSettings.ToggleKeybind] then
+            QBAimbotSettings.Enabled = not QBAimbotSettings.Enabled
+        end
+    end
 end)
 
 
