@@ -22,5 +22,7 @@ Fixed : ```fbRemote:FireServer('Clicked', originPosAdjusted, originPosAdjusted+t
 
 I Added a keybind (J) to change from bullet to mag since most of the functions return nil and the UI not being able to show due to solara being a shit executor. Wave recommended for better experience.
 
+1 = Bullet, 2 = Mag/Dive
+
 You can change the keybind here: ```getgenv().QBAimbotSettings.TimeToggleKeybind = 'J'```
 
